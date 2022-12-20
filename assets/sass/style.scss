@@ -1,0 +1,61 @@
+:root{
+    background-color: grey;
+    color: white;
+
+}
+
+
+
+body{
+    background-color: rgb(128, 128, 128) !important;
+    nav{
+        .navbarr{
+            border-radius: 0.3rem;
+            display: flex;
+            align-items: end;
+            justify-content: end;
+            padding: 1rem;
+            background-color: rgb(53, 95, 153);
+            a{
+                color: rgb(255, 255, 255);
+                text-decoration: none;
+                margin: 1rem;
+            }
+            a:hover{
+                color :rgb(255, 255, 255);
+                text-decoration: underline;
+            }
+        }
+    }
+    .container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .card{
+            width: 20rem;
+            height: 20rem;
+            border-radius: 0.3rem;
+            margin: 1rem;
+            background-color: rgb(53, 95, 153);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            .card-body{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                .card-title{
+                    color: rgb(255, 255, 255);
+                }
+                .card-text{
+                    color: rgb(255, 255, 255);
+                }
+            }
+        }
+    }
+
+
+}
