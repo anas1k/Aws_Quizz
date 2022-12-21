@@ -1,21 +1,58 @@
 :root{
-    background-color: grey;
-    color: white;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
 
+    --circle-size: clamp(1.5rem, 5vw, 3rem);
+    --spacing: clamp(1rem, 2vw, 2rem);
+}
+
+@mixin flexCenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flexEnd{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+@mixin flexStart{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+@mixin flexSpaceBetween{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 
-
-body{
-    background-color: rgb(128, 128, 128) !important;
-    nav{
-        .navbarr{
-            border-radius: 0.3rem;
-            display: flex;
-            align-items: end;
-            justify-content: end;
-            padding: 1rem;
-            background-color: rgb(53, 95, 153);
+.wallpaper{
+    
+    position: relative;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/essentail/background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    
+}
+nav{
+    .navbarr{
+        @include flexSpaceBetween();
+        h2{
+            @include flexStart();
+        }
+        border-radius: 0.3rem;
+        
+        padding: 1rem;
+        background-color: rgb(11, 80, 177);
+        .links{
+            @include flexEnd();
             a{
                 color: rgb(255, 255, 255);
                 text-decoration: none;
@@ -27,26 +64,83 @@ body{
             }
         }
     }
-    .container{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
+}
+.container{
+    @include flexCenter;
+}
+.wrapper{
+    
+    @include flexCenter;
+}
+.s-component{
+    margin-left: -7rem;
+    width: 100%;
+    color: rgb(255, 0, 0);
+    font-weight: bolder;
+    .stepper{
+        @include flexSpaceBetween();
+    }
+    .stepper-item{
+        @include flexCenter;
+        flex: 1;
+        text-align: center;
+
+        &:before {
+            
+            content: "";
+            
+            width: var(--circle-size);
+            height: var(--circle-size);
+            border-radius: 20%;
+            background-color: lightgrey;
+            background-color: red;
+            opacity: 0.5;
+            margin: 0 auto 1rem;
+        }
+        &:not(:last-child) {
+            &:after {
+            content: "";
+            position: relative;
+            top: calc(var(--circle-size) / 2);
+            width: calc(100% - var(--circle-size) - calc(var(--spacing) * 2));
+            left: calc(50% + calc(var(--circle-size) / 2 + var(--spacing)));
+            height: 2px;
+            background-color: #e0e0e0;
+            order: -1;
+            }
+        }
+    }
+}
+
+.quizz-card{
+    
+    background-color: #ffffff7d;   
+    margin: 2rem;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 10px 15px rgb(0 0 0 / 20%);
+    box-sizing: border-box;
+    color: rgba(0,0,0,0.8);
+    backdrop-filter: blur(1px);
+    background-blend-mode: overlay;
+    .question{
+        @include flexCenter;
+        margin: 3rem;
+        font-weight: bolder;
+        color: white;
+    }
+    .answers{
+        flex-wrap: wrap;
+        @include flexCenter;
         .card{
-            width: 20rem;
-            height: 20rem;
-            border-radius: 0.3rem;
+            width: 9rem;
+            height: 9rem;
+            border-radius: 1rem;
             margin: 1rem;
             background-color: rgb(53, 95, 153);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+            @include flexCenter;
             .card-body{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
+                flex-direction: row;
                 .card-title{
                     color: rgb(255, 255, 255);
                 }
@@ -56,6 +150,7 @@ body{
             }
         }
     }
-
-
 }
+
+
+
