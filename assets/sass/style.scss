@@ -73,8 +73,8 @@ nav{
     @include flexCenter;
 }
 .s-component{
-    margin-left: -7rem;
-    width: 100%;
+    margin-left: -3rem;
+    width: 80%;
     color: rgb(255, 0, 0);
     font-weight: bolder;
     .stepper{
@@ -82,30 +82,29 @@ nav{
     }
     .stepper-item{
         @include flexCenter;
-        flex: 1;
+        flex: 0.1;
         text-align: center;
 
         &:before {
             
             content: "";
-            
             width: var(--circle-size);
             height: var(--circle-size);
-            border-radius: 20%;
+            border-radius: 50%;
             background-color: lightgrey;
-            background-color: red;
+            background-color: rgb(25, 255, 167);
             opacity: 0.5;
             margin: 0 auto 1rem;
         }
         &:not(:last-child) {
             &:after {
             content: "";
-            position: relative;
+            /* position: relative; */
             top: calc(var(--circle-size) / 2);
             width: calc(100% - var(--circle-size) - calc(var(--spacing) * 2));
             left: calc(50% + calc(var(--circle-size) / 2 + var(--spacing)));
             height: 2px;
-            background-color: #e0e0e0;
+            color: #e0e0e0 !important;
             order: -1;
             }
         }
