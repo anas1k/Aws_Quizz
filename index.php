@@ -14,22 +14,14 @@
     <body>
         <main class="wallpaper">
             <?php include_once 'include/navbar.php'; ?>
-            <div class="wrapper mt-3">
-                <div class="s-component">
-                    <ol class="stepper">
-                        <li class="stepper-item">
-                            <h5 class="stepper-title">Rules</h5>
-                        </li>
-                        <li class="stepper-item">
-                            <h5 class="stepper-title">Questions</h5>
-                        </li>
-                        <li class="stepper-item">
-                            <h5 class="stepper-title">Result</h5>
-                        </li>
-                    </ol>
-                </div>
+            <div class="container mt-3">
+                <ul class="progressbar">
+                    <li class="active">Rules</li>
+                    <li>Questions</li>
+                    <li>Result</li>
+                </ul>
             </div>
-            <div class="quizz-card">
+            <!-- <div class="quizz-card">
                 <div class="question">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus explicabo excepturi repudiandae? Quod delectus eaque similique omnis incidunt ea?</div>
                 <section class="answers">
                     <div class="card" data-answer="1">Answer 1</div>
@@ -37,7 +29,7 @@
                     <div class="card" data-answer="3">Answer 1</div>
                     <div class="card" data-answer="4">Answer 1</div>
                 </section>
-            </div>
+            </div> -->
         </main>
     </body>
 </html>
