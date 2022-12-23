@@ -1,8 +1,6 @@
 :root {
   background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
-  --circle-size: clamp(1.5rem, 5vw, 3rem);
-  --spacing: clamp(1rem, 2vw, 2rem);
 }
 
 .wallpaper {
@@ -43,56 +41,97 @@ nav .navbarr .links a:hover {
 }
 
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
 }
 
-.wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* .wrapper{
+    @include flexCenter;
+} */
+.progressbar {
+  counter-reset: step;
 }
-
-.s-component {
-  margin-left: -3rem;
-  width: 80%;
-  color: rgb(255, 0, 0);
-  font-weight: bolder;
-}
-.s-component .stepper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.s-component .stepper-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 0.1;
+.progressbar li {
+  list-style-type: none;
+  float: left;
+  width: 33.33%;
+  position: relative;
   text-align: center;
 }
-.s-component .stepper-item:before {
-  content: "";
-  width: var(--circle-size);
-  height: var(--circle-size);
+.progressbar li:before {
+  content: counter(step);
+  counter-increment: step;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border: 2px solid #ddd;
+  display: block;
+  text-align: center;
+  margin: 0 auto 10px;
   border-radius: 50%;
-  background-color: lightgrey;
-  background-color: rgb(25, 255, 167);
-  opacity: 0.5;
-  margin: 0 auto 1rem;
+  background-color: #fff;
 }
-.s-component .stepper-item:not(:last-child):after {
+.progressbar li:after {
   content: "";
-  /* position: relative; */
-  top: calc(var(--circle-size) / 2);
-  width: calc(100% - var(--circle-size) - var(--spacing) * 2);
-  left: calc(50% + var(--circle-size) / 2 + var(--spacing));
-  height: 2px;
-  color: #e0e0e0 !important;
-  order: -1;
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: #ddd;
+  top: 15px;
+  left: -50%;
+  z-index: -1;
+}
+.progressbar li:first-child:after {
+  content: none;
+}
+.progressbar li li.active {
+  color: #4CAF50;
+}
+.progressbar li li.active:before {
+  border-color: #4CAF50;
+}
+.progressbar li li.active + li:after {
+  background-color: #4CAF50;
 }
 
+/* .s-component{
+    margin-left: -3rem;
+    width: 80%;
+    color: rgb(255, 0, 0);
+    font-weight: bolder;
+    .stepper{
+        @include flexSpaceBetween();
+    }
+    .stepper-item{
+        @include flexCenter;
+        flex: 0.1;
+        text-align: center;
+
+        &:before {
+            --circle-size: clamp(1.5rem, 5vw, 3rem);
+            --spacing: clamp(1rem, 2vw, 2rem);
+            content: "";
+            width: var(--circle-size);
+            height: var(--circle-size);
+            border-radius: 50%;
+            background-color: lightgrey;
+            background-color: rgb(25, 255, 167);
+            opacity: 0.5;
+            margin: 0 auto 1rem;
+        }
+        &:not(:last-child) {
+            &:after {
+            content: "";
+            position: relative;
+            top: calc(var(--circle-size) / 2);
+            width: calc(100% - var(--circle-size) - calc(var(--spacing) * 2));
+            left: calc(50% + calc(var(--circle-size) / 2 + var(--spacing)));
+            height: 5px;
+            color: #ff0000 !important;
+            order: -1;
+            }
+        }
+    }
+} */
 .quizz-card {
   background-color: rgba(255, 255, 255, 0.4901960784);
   margin: 2rem;

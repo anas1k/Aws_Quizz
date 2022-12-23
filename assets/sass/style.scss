@@ -2,8 +2,7 @@
     background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
 
-    --circle-size: clamp(1.5rem, 5vw, 3rem);
-    --spacing: clamp(1rem, 2vw, 2rem);
+    
 }
 
 @mixin flexCenter{
@@ -31,15 +30,12 @@
 
 
 .wallpaper{
-    
     position: relative;
     height: 100vh;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/essentail/background.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    
-    
 }
 nav{
     .navbarr{
@@ -66,13 +62,59 @@ nav{
     }
 }
 .container{
-    @include flexCenter;
+    width: 100%;
 }
-.wrapper{
-    
+/* .wrapper{
     @include flexCenter;
+} */
+
+.progressbar{
+    counter-reset: step;
+    li{
+        list-style-type: none;
+        float: left;
+        width: 33.33%;
+        position: relative;
+        text-align: center;
+        &:before{
+            content: counter(step);
+            counter-increment: step;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border: 2px solid #ddd;
+            display: block;
+            text-align: center;
+            margin: 0 auto 10px;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+        &:after{
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background-color: #ddd;
+            top: 15px;
+            left: -50%;
+            z-index: -1;
+        }
+        &:first-child:after{
+            content: none;
+        }
+        li.active{
+            color: #4CAF50;
+        }
+        li.active:before{
+            border-color: #4CAF50;
+        }
+        li.active + li:after{
+            background-color: #4CAF50;
+        }
+    }
 }
-.s-component{
+
+/* .s-component{
     margin-left: -3rem;
     width: 80%;
     color: rgb(255, 0, 0);
@@ -86,7 +128,8 @@ nav{
         text-align: center;
 
         &:before {
-            
+            --circle-size: clamp(1.5rem, 5vw, 3rem);
+            --spacing: clamp(1rem, 2vw, 2rem);
             content: "";
             width: var(--circle-size);
             height: var(--circle-size);
@@ -99,17 +142,17 @@ nav{
         &:not(:last-child) {
             &:after {
             content: "";
-            /* position: relative; */
+            position: relative;
             top: calc(var(--circle-size) / 2);
             width: calc(100% - var(--circle-size) - calc(var(--spacing) * 2));
             left: calc(50% + calc(var(--circle-size) / 2 + var(--spacing)));
-            height: 2px;
-            color: #e0e0e0 !important;
+            height: 5px;
+            color: #ff0000 !important;
             order: -1;
             }
         }
     }
-}
+} */
 
 .quizz-card{
     
