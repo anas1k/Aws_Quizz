@@ -1,8 +1,6 @@
 :root{
     background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
-
-    
 }
 
 @mixin flexCenter{
@@ -36,6 +34,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    
 }
 nav{
     .navbarr{
@@ -81,35 +80,38 @@ nav{
             counter-increment: step;
             width: 30px;
             height: 30px;
-            line-height: 30px;
-            border: 2px solid #ddd;
+            line-height: 26.5px;
+            border: 1px solid rgb(255, 255, 255);
             display: block;
             text-align: center;
-            margin: 0 auto 10px;
+            margin: 0 auto 10px auto;
             border-radius: 50%;
-            background-color: #fff;
+            background-color: #fff !important;
+            z-index: 10;
         }
         &:after{
             content: '';
             position: absolute;
             width: 100%;
             height: 1px;
-            background-color: #ddd;
+            background-color: #ddd !important;
             top: 15px;
             left: -50%;
-            z-index: -1;
+            z-index: 1;
         }
         &:first-child:after{
             content: none;
+            color: blue !important;
         }
-        li.active{
-            color: #4CAF50;
+        &.active{
+            color: #4CAF50 !important;
         }
-        li.active:before{
-            border-color: #4CAF50;
+        &.active:before{
+            border-color: #4CAF50 !important;
+            z-index: 10;
         }
-        li.active + li:after{
-            background-color: #4CAF50;
+        &.active + li:after{
+            background-color: #4CAF50 !important;
         }
     }
 }
@@ -158,6 +160,7 @@ nav{
     
     background-color: #ffffff7d;   
     margin: 2rem;
+    margin-top: 7rem;
     border-radius: 12px;
     padding: 1rem;
     box-shadow: 0 10px 15px rgb(0 0 0 / 20%);
