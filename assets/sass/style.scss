@@ -1,8 +1,6 @@
 :root{
     background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
-
-    
 }
 
 @mixin flexCenter{
@@ -36,6 +34,8 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    z-index: 0;
+    
 }
 nav{
     .navbarr{
@@ -70,31 +70,34 @@ nav{
 
 .progressbar{
     counter-reset: step;
+    
     li{
         list-style-type: none;
         float: left;
         width: 33.33%;
         position: relative;
         text-align: center;
+        
         &:before{
             content: counter(step);
             counter-increment: step;
             width: 30px;
             height: 30px;
-            line-height: 30px;
-            border: 2px solid #ddd;
+            line-height: 26.5px;
+            border: 1px solid rgb(255, 255, 255);
             display: block;
             text-align: center;
-            margin: 0 auto 10px;
+            margin: 0 auto 10px auto;
             border-radius: 50%;
-            background-color: #fff;
+            background-color: rgb(133, 133, 133) !important;
+            
         }
         &:after{
             content: '';
             position: absolute;
             width: 100%;
             height: 1px;
-            background-color: #ddd;
+            background-color: #ddd !important;
             top: 15px;
             left: -50%;
             z-index: -1;
@@ -102,62 +105,26 @@ nav{
         &:first-child:after{
             content: none;
         }
-        li.active{
-            color: #4CAF50;
+        &.active{
+            color: #4CAF50 !important;
         }
-        li.active:before{
-            border-color: #4CAF50;
+        &.active:before{
+            border-color: #4CAF50 !important;
+            z-index: 10;
         }
-        li.active + li:after{
-            background-color: #4CAF50;
+        &.active + li:after{
+            background-color: #4CAF50 !important;
+            z-index: -1;
         }
     }
 }
 
-/* .s-component{
-    margin-left: -3rem;
-    width: 80%;
-    color: rgb(255, 0, 0);
-    font-weight: bolder;
-    .stepper{
-        @include flexSpaceBetween();
-    }
-    .stepper-item{
-        @include flexCenter;
-        flex: 0.1;
-        text-align: center;
-
-        &:before {
-            --circle-size: clamp(1.5rem, 5vw, 3rem);
-            --spacing: clamp(1rem, 2vw, 2rem);
-            content: "";
-            width: var(--circle-size);
-            height: var(--circle-size);
-            border-radius: 50%;
-            background-color: lightgrey;
-            background-color: rgb(25, 255, 167);
-            opacity: 0.5;
-            margin: 0 auto 1rem;
-        }
-        &:not(:last-child) {
-            &:after {
-            content: "";
-            position: relative;
-            top: calc(var(--circle-size) / 2);
-            width: calc(100% - var(--circle-size) - calc(var(--spacing) * 2));
-            left: calc(50% + calc(var(--circle-size) / 2 + var(--spacing)));
-            height: 5px;
-            color: #ff0000 !important;
-            order: -1;
-            }
-        }
-    }
-} */
 
 .quizz-card{
     
     background-color: #ffffff7d;   
-    margin: 2rem;
+    margin: 1rem;
+    margin-top: 6rem;
     border-radius: 12px;
     padding: 1rem;
     box-shadow: 0 10px 15px rgb(0 0 0 / 20%);
@@ -167,7 +134,7 @@ nav{
     background-blend-mode: overlay;
     .question{
         @include flexCenter;
-        margin: 3rem;
+        margin: 1rem;
         font-weight: bolder;
         color: white;
     }
@@ -192,7 +159,23 @@ nav{
             }
         }
     }
+    
 }
 
+@media screen and (max-width: 600px) {
+    .answers{
+        flex-direction: column;
+        .card{
+            width: 100% !important;
+            height: 4rem !important;
+            margin: 0rem !important;
+            margin-bottom: 0.6rem !important;
+            @include flexCenter;
 
+        }
+    }
+    .wallpaper{
+        height: auto;
+    }
+}
 
