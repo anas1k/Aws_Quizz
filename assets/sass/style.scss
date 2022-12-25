@@ -34,6 +34,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    z-index: 0;
     
 }
 nav{
@@ -69,12 +70,14 @@ nav{
 
 .progressbar{
     counter-reset: step;
+    
     li{
         list-style-type: none;
         float: left;
         width: 33.33%;
         position: relative;
         text-align: center;
+        
         &:before{
             content: counter(step);
             counter-increment: step;
@@ -86,8 +89,8 @@ nav{
             text-align: center;
             margin: 0 auto 10px auto;
             border-radius: 50%;
-            background-color: #fff !important;
-            z-index: 10;
+            background-color: rgb(133, 133, 133) !important;
+            
         }
         &:after{
             content: '';
@@ -97,11 +100,10 @@ nav{
             background-color: #ddd !important;
             top: 15px;
             left: -50%;
-            z-index: 1;
+            z-index: -1;
         }
         &:first-child:after{
             content: none;
-            color: blue !important;
         }
         &.active{
             color: #4CAF50 !important;
@@ -112,55 +114,17 @@ nav{
         }
         &.active + li:after{
             background-color: #4CAF50 !important;
+            z-index: -1;
         }
     }
 }
 
-/* .s-component{
-    margin-left: -3rem;
-    width: 80%;
-    color: rgb(255, 0, 0);
-    font-weight: bolder;
-    .stepper{
-        @include flexSpaceBetween();
-    }
-    .stepper-item{
-        @include flexCenter;
-        flex: 0.1;
-        text-align: center;
-
-        &:before {
-            --circle-size: clamp(1.5rem, 5vw, 3rem);
-            --spacing: clamp(1rem, 2vw, 2rem);
-            content: "";
-            width: var(--circle-size);
-            height: var(--circle-size);
-            border-radius: 50%;
-            background-color: lightgrey;
-            background-color: rgb(25, 255, 167);
-            opacity: 0.5;
-            margin: 0 auto 1rem;
-        }
-        &:not(:last-child) {
-            &:after {
-            content: "";
-            position: relative;
-            top: calc(var(--circle-size) / 2);
-            width: calc(100% - var(--circle-size) - calc(var(--spacing) * 2));
-            left: calc(50% + calc(var(--circle-size) / 2 + var(--spacing)));
-            height: 5px;
-            color: #ff0000 !important;
-            order: -1;
-            }
-        }
-    }
-} */
 
 .quizz-card{
     
     background-color: #ffffff7d;   
-    margin: 2rem;
-    margin-top: 7rem;
+    margin: 1rem;
+    margin-top: 6rem;
     border-radius: 12px;
     padding: 1rem;
     box-shadow: 0 10px 15px rgb(0 0 0 / 20%);
@@ -170,7 +134,7 @@ nav{
     background-blend-mode: overlay;
     .question{
         @include flexCenter;
-        margin: 3rem;
+        margin: 1rem;
         font-weight: bolder;
         color: white;
     }
@@ -195,7 +159,23 @@ nav{
             }
         }
     }
+    
 }
 
+@media screen and (max-width: 600px) {
+    .answers{
+        flex-direction: column;
+        .card{
+            width: 100% !important;
+            height: 4rem !important;
+            margin: 0rem !important;
+            margin-bottom: 0.6rem !important;
+            @include flexCenter;
 
+        }
+    }
+    .wallpaper{
+        height: auto;
+    }
+}
 

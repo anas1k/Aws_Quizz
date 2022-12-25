@@ -22,7 +22,7 @@
                     <li>Result</li>
                 </ul>
             </div>
-            <div class="quizz-card">
+            <div class="quizz-card" style="display:none">
                 <div class="question">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus explicabo excepturi repudiandae? Quod delectus eaque similique omnis incidunt ea?</div>
                 <section class="answers">
                     <div class="card" data-answer="1">Answer 1</div>
@@ -30,6 +30,12 @@
                     <div class="card" data-answer="3">Answer 1</div>
                     <div class="card" data-answer="4">Answer 1</div>
                 </section>
+            </div>
+            <div class="quizz-card">
+                <div class="question">Ruuuuuuules</div>
+            </div>
+            <div class="quizz-card" style="display:none">
+                <div class="question">Reeeeeeesuuuuuulttt</div>
             </div>
         </main>
     </body>
