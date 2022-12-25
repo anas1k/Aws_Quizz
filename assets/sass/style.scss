@@ -14,6 +14,7 @@
     justify-content: flex-end;
     align-items: center;
 }
+
 @mixin flexStart{
     display: flex;
     justify-content: flex-start;
@@ -25,6 +26,7 @@
     justify-content: space-between;
     align-items: center;
 }
+
 
 
 .wallpaper{
@@ -67,8 +69,7 @@ nav{
 /* .wrapper{
     @include flexCenter;
 } */
-
-.progressbar{
+.stepper{
     counter-reset: step;
     
     li{
@@ -101,27 +102,34 @@ nav{
             top: 15px;
             left: -50%;
             z-index: -1;
+
         }
         &:first-child:after{
             content: none;
+
         }
         &.active{
             color: #4CAF50 !important;
+
         }
         &.active:before{
             border-color: #4CAF50 !important;
             z-index: 10;
+
         }
         &.active + li:after{
             background-color: #4CAF50 !important;
             z-index: -1;
+
         }
     }
 }
 
+.end{
+    @include flexEnd;
+}
 
 .quizz-card{
-    
     background-color: #ffffff7d;   
     margin: 1rem;
     margin-top: 6rem;
@@ -142,24 +150,15 @@ nav{
         flex-wrap: wrap;
         @include flexCenter;
         .card{
-            width: 9rem;
-            height: 9rem;
+            width: 16rem;
+            height: 11rem;
             border-radius: 1rem;
             margin: 1rem;
             background-color: rgb(53, 95, 153);
             @include flexCenter;
-            .card-body{
-                flex-direction: row;
-                .card-title{
-                    color: rgb(255, 255, 255);
-                }
-                .card-text{
-                    color: rgb(255, 255, 255);
-                }
-            }
+            padding: 0.5rem;
         }
     }
-    
 }
 
 @media screen and (max-width: 600px) {
@@ -175,7 +174,7 @@ nav{
         }
     }
     .wallpaper{
-        height: auto;
+        height: 115vh;
     }
 }
 
