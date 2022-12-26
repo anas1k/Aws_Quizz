@@ -1,8 +1,11 @@
-:root {
-  background-color: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
-  --circle-size: clamp(1.5rem, 5vw, 3rem);
-  --spacing: clamp(1rem, 2vw, 2rem);
+button {
+  display: none;
+}
+
+.end {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .wallpaper {
@@ -12,6 +15,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  z-index: 0;
 }
 
 nav .navbarr {
@@ -43,59 +47,63 @@ nav .navbarr .links a:hover {
 }
 
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.s-component {
-  margin-left: -7rem;
   width: 100%;
-  color: rgb(255, 0, 0);
-  font-weight: bolder;
 }
-.s-component .stepper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
+.stepper {
+  counter-reset: step;
 }
-.s-component .stepper-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
+.stepper li {
+  list-style-type: none;
+  font-weight: 1000;
+  color: rgb(255, 255, 255);
+  float: left;
+  width: 33.33%;
+  position: relative;
   text-align: center;
 }
-.s-component .stepper-item:before {
-  content: "";
-  width: var(--circle-size);
-  height: var(--circle-size);
-  border-radius: 20%;
-  background-color: lightgrey;
-  background-color: red;
-  opacity: 0.5;
-  margin: 0 auto 1rem;
+.stepper li:before {
+  content: counter(step);
+  counter-increment: step;
+  width: 30px;
+  height: 30px;
+  line-height: 26.5px;
+  border: 1px solid rgb(255, 255, 255);
+  display: block;
+  text-align: center;
+  margin: 0 auto 10px auto;
+  border-radius: 50%;
+  background-color: rgb(133, 133, 133) !important;
 }
-.s-component .stepper-item:not(:last-child):after {
+.stepper li:after {
   content: "";
-  position: relative;
-  top: calc(var(--circle-size) / 2);
-  width: calc(100% - var(--circle-size) - var(--spacing) * 2);
-  left: calc(50% + var(--circle-size) / 2 + var(--spacing));
-  height: 2px;
-  background-color: #e0e0e0;
-  order: -1;
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: #ddd !important;
+  top: 15px;
+  left: -50%;
+  z-index: -1;
+}
+.stepper li:first-child:after {
+  content: none;
+}
+.stepper li.active {
+  color: #07ff0f !important;
+}
+.stepper li.active:before {
+  border-color: #4CAF50 !important;
+  z-index: 10;
+}
+.stepper li.active + li:after {
+  background-color: #4CAF50 !important;
+  z-index: -1;
 }
 
 .quizz-card {
   background-color: rgba(255, 255, 255, 0.4901960784);
-  margin: 2rem;
+  margin: 1rem;
+  margin-top: 6rem;
   border-radius: 12px;
   padding: 1rem;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
@@ -108,7 +116,7 @@ nav .navbarr .links a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 3rem;
+  margin: 1rem;
   font-weight: bolder;
   color: white;
 }
@@ -119,23 +127,43 @@ nav .navbarr .links a:hover {
   align-items: center;
 }
 .quizz-card .answers .card {
-  width: 9rem;
-  height: 9rem;
+  width: 16rem;
+  height: 11rem;
   border-radius: 1rem;
   margin: 1rem;
   background-color: rgb(53, 95, 153);
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0.5rem 1rem;
 }
-.quizz-card .answers .card .card-body {
-  flex-direction: row;
+.quizz-card .answers .card .card-text {
+  width: 100%;
 }
-.quizz-card .answers .card .card-body .card-title {
-  color: rgb(255, 255, 255);
+.quizz-card .answers .card .active {
+  background-color: rgb(0, 255, 0);
 }
-.quizz-card .answers .card .card-body .card-text {
-  color: rgb(255, 255, 255);
+
+.chosen {
+  background-color: rgb(0, 255, 0) !important;
+}
+
+@media screen and (max-width: 600px) {
+  .answers {
+    flex-direction: column;
+  }
+  .answers .card {
+    width: 100% !important;
+    height: 4rem !important;
+    margin: 0rem !important;
+    margin-bottom: 0.6rem !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .wallpaper {
+    height: 115vh;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
