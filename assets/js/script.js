@@ -114,7 +114,7 @@ function fetchQuestion() {
             fetchQuestion();
             // clear the timer
             // clearInterval(timer);
-            // clearInterval(downloadTimer);
+            clearInterval(downloadTimer);
             // call countdown timer
             countdown();
             //remove the active class from the buttons
@@ -129,7 +129,7 @@ function fetchQuestion() {
     };
 }
 
-fetchQuestion(index);
+fetchQuestion();
 
 function getQuestions() {
     document.getElementById('questions').style.display = 'block';
@@ -143,10 +143,10 @@ function getResults() {
         document.getElementById('result').style.display = 'block';
         // document.getElementById('QstSt').setAttribute('class', 'active');
         document.getElementById('RsltSt').setAttribute('class', 'active');
-        document.getElementById('correct').innerText = correct;
-        document.getElementById('wrong').innerText = questions.length - correct;
-        document.getElementById('total').innerText = questions.length;
-        document.getElementById('score').innerText = (correct / questions.length) * 100 + '%';
+        document.getElementById('correct').innerText = correct + ' correct out of /' + questions.length;
+        document.getElementById('wrong').innerText = questions.length - correct + ' Wrong answers';
+        // document.getElementById('total').innerText = questions.length;
+        document.getElementById('score').innerText = (correct / questions.length) * 100 + '%  Success Rate';
     }
 }
 
@@ -159,7 +159,6 @@ function chosenAnswer() {
             });
             button.classList.add('chosen');
             answer = button.dataset.answer;
-            // answer = button.innerText;
         });
     });
 }
@@ -176,16 +175,18 @@ function checkAnswer(index, answer) {
     }
     console.log(user_answers);
 }
+
 // function for countdown timer
 function countdown() {
-    var timeleft = 10;
+    var timeleft = 30;
+    clearInterval(downloadTimer);
     downloadTimer = setInterval(function () {
         document.getElementById('countdown').innerHTML = timeleft + ' seconds remaining';
         timeleft -= 1;
-        if (timeleft <= 0) {
+        if (timeleft === 0) {
             clearInterval(downloadTimer);
             document.getElementById('countdown').innerHTML = 'Finished';
-            getResults();
+            // getResults();
             nextButton.click();
         }
     }, 1000);
