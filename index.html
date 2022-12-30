@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Quizzy - AWS Practitioner</title>
 
-        <link rel="stylesheet" href="assets/css/style.css" />
+        <link rel="stylesheet" href="./assets/css/style.css" />
         
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.min.css" integrity="sha512-XWTTruHZEYJsxV3W/lSXG1n3Q39YIWOstqvmFsdNEEQfHoZ6vm6E9GK2OrF6DSJSpIbRbi+Nn0WDPID9O7xB2Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -14,11 +14,12 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.js" integrity="sha512-nO7wgHUoWPYGCNriyGzcFwPSF+bPDOR+NvtOYy2wMcWkrnCNPKBcFEkU80XIN14UVja0Gdnff9EmydyLlOL7mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </head>
-    <body>
+    <body >
+        <div class="wallpaper">
 
-        <main class="wallpaper">
-            <?php include_once 'include/navbar.php'; ?>
-            <div class="container mt-3">
+        </div>
+        <main >
+            <div class="container mt-5">
                 <ul class="stepper">
                     <li class="active">Rules</li>
                     <li id="QstSt">Questions</li>
@@ -39,6 +40,8 @@
             </div>
 
             <div class="quizz-card" id="questions" style="display:none">
+                <h4 class="d-flex justify-content-between"><t></t>Question : <span id="questionNumber"></span>
+                <div id="countdown"></div></h4>
                 <div class="question" id="questionn"></div>
                 <section class="answers">
                     <button  class="card" id="answer1" data-answer="A"></button>
@@ -46,16 +49,24 @@
                     <button class="card" id="answer3" data-answer="C"></button>
                     <button class="card" id="answer4" data-answer="D"></button>
                 </section>
-                <div id="countdown"></div>
+                
                 <div class="end"><button type="button" class="btn btn-primary">Next Question</button></div>
             </div>
 
             <div class="quizz-card" style="display:none" id="result">
                 <div class="question">Result</div>
-                <div id="correct"></div>
-                <div id="wrong"></div>
-                <div id="total"></div>
-                <div id="score"></div>
+
+                <div id="correct" class="badge text-bg-success me-3"></div>
+                <div id="wrong" class="badge text-bg-danger mx-3"></div>
+                <div id="score" class="badge text-bg-warning mx-3 me-xs-3 "></div>
+
+                <div class="question" id="question"></div>
+                <section class="answers">
+                    <div  class="option" id="option1"></div>
+                    <div class="option" id="option2"></div>
+                    <div class="option" id="option3"></div>
+                    <div class="option" id="option4"></div>
+                </section>
                 
 
                 
