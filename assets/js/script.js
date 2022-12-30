@@ -124,29 +124,26 @@ function fetchQuestion() {
             answer = '';
             chosenAnswer();
             getResults();
-            showAnswers();
         }
     };
 }
-
-fetchQuestion();
 
 function getQuestions() {
     document.getElementById('questions').style.display = 'block';
     document.getElementById('rules').style.display = 'none';
     document.getElementById('QstSt').setAttribute('class', 'active');
+    fetchQuestion();
 }
 
 function getResults() {
     if (index == questions.length) {
         document.getElementById('questions').style.display = 'none';
         document.getElementById('result').style.display = 'block';
-        // document.getElementById('QstSt').setAttribute('class', 'active');
         document.getElementById('RsltSt').setAttribute('class', 'active');
         document.getElementById('correct').innerText = correct + ' correct out of /' + questions.length;
         document.getElementById('wrong').innerText = questions.length - correct + ' Wrong answers';
-        // document.getElementById('total').innerText = questions.length;
         document.getElementById('score').innerText = (correct / questions.length) * 100 + '%  Success Rate';
+        showAnswers();
     }
 }
 
@@ -167,7 +164,6 @@ function checkAnswer(index, answer) {
     user_answers.push(answer);
     if (questions[index].correct === answer) {
         console.log('correct');
-
         correct++;
         console.log(correct);
     } else {
@@ -183,9 +179,10 @@ function countdown() {
     downloadTimer = setInterval(function () {
         document.getElementById('countdown').innerHTML = timeleft + ' seconds remaining';
         timeleft -= 1;
-        if (timeleft === 0) {
+        if (timeleft === -1) {
+            document.getElementById('countdown').innerHTML = 'Next Question';
             clearInterval(downloadTimer);
-            document.getElementById('countdown').innerHTML = 'Finished';
+
             // getResults();
             nextButton.click();
         }
@@ -194,24 +191,11 @@ function countdown() {
 
 // show ansaers when questions are finished
 function showAnswers() {
-    if (index == questions.length) {
-        for (let i = 0; i < user_answers.length; i++) {
-            // craete a new div
-            var newDiv = document.createElement('div');
-            // add class to the div
-            newDiv.classList.add('final-answers');
-            // create a new text node
-            if (user_answers[i] === '') {
-                var repose = 'No answer';
-            } else {
-                var repose = user_answers[i];
-            }
-            var newContent = document.createTextNode(`Question ${i + 1}: ${repose}`);
-            // append the text node to the div
-            newDiv.appendChild(newContent);
-            // add the new div to the DOM
-            var result = document.getElementById('result');
-            result.appendChild(newDiv);
-        }
+    for (let i = 0; i <= questions.length; i++) {
+        document.getElementById('question').innerHTML = questions[i].question;
+        document.getElementById('option1').innerText = questions[i].A;
+        document.getElementById('option2').innerText = questions[i].B;
+        document.getElementById('option3').innerText = questions[i].C;
+        document.getElementById('option4').innerText = questions[i].D;
     }
 }
