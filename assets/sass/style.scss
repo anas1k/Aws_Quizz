@@ -27,6 +27,10 @@ main{
     @include flexEnd;
 }
 
+.centered{
+    @include flexCenter;
+}
+
 @mixin flexStart{
     display: flex;
     justify-content: flex-start;

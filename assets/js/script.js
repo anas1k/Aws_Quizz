@@ -239,6 +239,8 @@ function showAnswers() {
             } else if (questions[i].correct == 'D') {
                 document.querySelector(`#D${i}`).setAttribute('class', 'option true');
             }
+        } else {
+            document.querySelector('.justify').innerHTML = '<h2 class="text-info centered"> Congrats, you have answered all the questions correctly </h2>';
         }
     }
 }
