@@ -108,6 +108,10 @@ questions.sort(function () {
     return 0.5 - Math.random();
 });
 
+function countQuest() {
+    document.getElementById('questionNumber').innerHTML = 'Question ' + (index + 1) + ' of ' + questions.length;
+}
+
 var index = 0;
 
 function fetchQuestion() {
@@ -121,6 +125,7 @@ function fetchQuestion() {
     chosenAnswer();
     // call countdown timer
     countdown();
+    countQuest();
 
     nextButton.onclick = function () {
         if (index < questions.length) {
