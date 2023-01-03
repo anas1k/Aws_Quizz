@@ -104,16 +104,19 @@ var answer;
 var user_answers = [];
 var downloadTimer;
 
+// randomize questions
 questions.sort(function () {
     return 0.5 - Math.random();
 });
 
+// question counter
 function countQuest() {
     document.getElementById('questionNumber').innerHTML = 'Question ' + (index + 1) + ' of ' + questions.length;
 }
 
 var index = 0;
 
+// fetch questions and show them
 function fetchQuestion() {
     if (index < questions.length) {
         document.getElementById('questionn').innerHTML = questions[index].question;
@@ -123,7 +126,6 @@ function fetchQuestion() {
         document.getElementById('answer4').innerText = questions[index].D;
     }
     chosenAnswer();
-    // call countdown timer
     countdown();
     countQuest();
 
@@ -132,12 +134,9 @@ function fetchQuestion() {
             checkAnswer(index, answer);
             index++;
             fetchQuestion();
-            // clear the timer
-            // clearInterval(timer);
             clearInterval(downloadTimer);
             // call countdown timer
             countdown();
-            //remove the active class from the buttons
             buttons.forEach(function (button) {
                 button.classList.remove('chosen');
             });
@@ -148,6 +147,7 @@ function fetchQuestion() {
     };
 }
 
+// to hide rules and show questions
 function getQuestions() {
     document.getElementById('questions').style.display = 'block';
     document.getElementById('rules').style.display = 'none';
@@ -155,6 +155,7 @@ function getQuestions() {
     fetchQuestion();
 }
 
+// to display the result of the quizz
 function getResults() {
     if (index == questions.length) {
         document.getElementById('questions').style.display = 'none';
@@ -167,8 +168,8 @@ function getResults() {
     }
 }
 
+// to make the choosen answer green
 function chosenAnswer() {
-    //add class active to the button that is clicked
     buttons.forEach(function (button) {
         button.addEventListener('click', function () {
             buttons.forEach(function (button) {
@@ -180,16 +181,13 @@ function chosenAnswer() {
     });
 }
 
+// function to increment the correct answer
 function checkAnswer(index, answer) {
     user_answers.push(answer);
     if (questions[index].correct === answer) {
         console.log('correct');
         correct++;
-        console.log(correct);
-    } else {
-        console.log(correct);
     }
-    console.log(user_answers);
 }
 
 // function for countdown timer
