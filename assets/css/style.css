@@ -17,6 +17,12 @@ main {
   align-items: center;
 }
 
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .wallpaper {
   position: relative;
   background-attachment: fixed;
