@@ -169,16 +169,17 @@ nav{
             @include flexCenter;
             padding: 0.5rem 1rem;
             .correct{
-                background-color: rgb(0, 161, 0);
+                background-color: rgb(0, 123, 0);
             }
             .false{
-                background-color: rgb(255, 0, 0);
+                background-color: rgb(162, 0, 0);
             }
         }
     }
 }
 
 .option{
+    color: antiquewhite;
     flex-wrap: wrap;
     width: 12rem;
     height: 9rem;
@@ -191,10 +192,10 @@ nav{
 }
 
 .true{
-    background-color: rgb(0, 255, 0) !important;
+    background-color: rgb(0, 145, 0) !important;
 }
 .false{
-    background-color: rgb(255, 0, 0) !important;
+    background-color: rgb(131, 0, 0) !important;
 }   
 
 .justification{
@@ -204,7 +205,7 @@ nav{
 }
 
 .chosen{
-    background-color: rgb(2, 201, 2) !important;
+    background-color: rgb(0, 134, 0) !important;
 }
 
 @media screen and (max-width: 780px) {
