@@ -42,12 +42,12 @@ main{
 
 
 .wallpaper{
-    // position: relative;
+    position: relative;
     background-attachment: fixed;
     height: 100vh;
     background-image: linear-gradient(rgba(73, 51, 51, 0.5), rgba(0, 0, 0, 0.5)), url("../img/essentail/back1.png");
     background-position: center;
-    background-repeat: repeat;
+    background-repeat: no-repeat;
     background-size: cover;
     z-index: 0;
     
@@ -122,7 +122,7 @@ nav{
 
         }
         &.active{
-            color: #07ff0f !important;
+            color: rgb(0, 236, 0) !important;
 
         }
         &.active:before{
@@ -140,7 +140,7 @@ nav{
 
 
 .quizz-card{
-    background-color: #ffffff7d;   
+    background-color: #5e5e5e7d;   
     margin: 1rem;
     margin-top: 9rem;
     border-radius: 12px;
@@ -161,42 +161,51 @@ nav{
         @include flexCenter;
         .card{
             width: 16rem;
+            color: aliceblue;
             height: 11rem;
             border-radius: 1rem;
             margin: 1rem;
             background-color: rgb(53, 95, 153);
             @include flexCenter;
             padding: 0.5rem 1rem;
-            .active{
-                background-color: rgb(0, 255, 0);
+            .correct{
+                background-color: rgb(0, 123, 0);
             }
             .false{
-                background-color: rgb(255, 0, 0);
+                background-color: rgb(162, 0, 0);
             }
         }
     }
 }
 
 .option{
+    color: antiquewhite;
     flex-wrap: wrap;
     width: 12rem;
-    height: 8rem;
+    height: 9rem;
     border-radius: 1rem;
     margin: 1rem;
     background-color: rgb(53, 95, 153);
     @include flexCenter;
     padding: 0.5rem 1rem;
-    .active{
-        background-color: rgb(0, 255, 0);
-    }
-    .false{
-        background-color: rgb(255, 0, 0);
-    }   
+    
 }
 
+.true{
+    background-color: rgb(0, 145, 0) !important;
+}
+.false{
+    background-color: rgb(131, 0, 0) !important;
+}   
+
+.justification{
+    @include flexCenter;
+    color: rgb(225, 255, 0);
+    font-weight: 700;
+}
 
 .chosen{
-    background-color: rgb(0, 255, 0) !important;
+    background-color: rgb(0, 134, 0) !important;
 }
 
 @media screen and (max-width: 780px) {
@@ -210,7 +219,7 @@ nav{
             @include flexCenter;
         }
         .option{
-            width: 100% !important;
+            width: 80% !important;
             height: 6rem !important;
             margin: 0rem !important;
             margin-bottom: 0.6rem !important;

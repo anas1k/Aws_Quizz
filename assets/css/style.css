@@ -18,11 +18,12 @@ main {
 }
 
 .wallpaper {
+  position: relative;
   background-attachment: fixed;
   height: 100vh;
   background-image: linear-gradient(rgba(73, 51, 51, 0.5), rgba(0, 0, 0, 0.5)), url("../img/essentail/back1.png");
   background-position: center;
-  background-repeat: repeat;
+  background-repeat: no-repeat;
   background-size: cover;
   z-index: 0;
 }
@@ -98,7 +99,7 @@ nav .navbarr .links a:hover {
   content: none;
 }
 .stepper li.active {
-  color: #07ff0f !important;
+  color: rgb(0, 236, 0) !important;
 }
 .stepper li.active:before {
   border-color: #4CAF50 !important;
@@ -110,7 +111,7 @@ nav .navbarr .links a:hover {
 }
 
 .quizz-card {
-  background-color: rgba(255, 255, 255, 0.4901960784);
+  background-color: rgba(94, 94, 94, 0.4901960784);
   margin: 1rem;
   margin-top: 9rem;
   border-radius: 12px;
@@ -137,6 +138,7 @@ nav .navbarr .links a:hover {
 }
 .quizz-card .answers .card {
   width: 16rem;
+  color: aliceblue;
   height: 11rem;
   border-radius: 1rem;
   margin: 1rem;
@@ -146,17 +148,18 @@ nav .navbarr .links a:hover {
   align-items: center;
   padding: 0.5rem 1rem;
 }
-.quizz-card .answers .card .active {
-  background-color: rgb(0, 255, 0);
+.quizz-card .answers .card .correct {
+  background-color: rgb(0, 123, 0);
 }
 .quizz-card .answers .card .false {
-  background-color: rgb(255, 0, 0);
+  background-color: rgb(162, 0, 0);
 }
 
 .option {
+  color: antiquewhite;
   flex-wrap: wrap;
   width: 12rem;
-  height: 8rem;
+  height: 9rem;
   border-radius: 1rem;
   margin: 1rem;
   background-color: rgb(53, 95, 153);
@@ -165,15 +168,25 @@ nav .navbarr .links a:hover {
   align-items: center;
   padding: 0.5rem 1rem;
 }
-.option .active {
-  background-color: rgb(0, 255, 0);
+
+.true {
+  background-color: rgb(0, 145, 0) !important;
 }
-.option .false {
-  background-color: rgb(255, 0, 0);
+
+.false {
+  background-color: rgb(131, 0, 0) !important;
+}
+
+.justification {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(225, 255, 0);
+  font-weight: 700;
 }
 
 .chosen {
-  background-color: rgb(0, 255, 0) !important;
+  background-color: rgb(0, 134, 0) !important;
 }
 
 @media screen and (max-width: 780px) {
@@ -190,7 +203,7 @@ nav .navbarr .links a:hover {
     align-items: center;
   }
   .answers .option {
-    width: 100% !important;
+    width: 80% !important;
     height: 6rem !important;
     margin: 0rem !important;
     margin-bottom: 0.6rem !important;

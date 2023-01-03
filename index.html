@@ -14,11 +14,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.js" integrity="sha512-nO7wgHUoWPYGCNriyGzcFwPSF+bPDOR+NvtOYy2wMcWkrnCNPKBcFEkU80XIN14UVja0Gdnff9EmydyLlOL7mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </head>
-    <body >
-        <div class="wallpaper">
-
-        </div>
-        <main >
+    <body  class="wallpaper">
+        <main>
             <div class="container mt-5">
                 <ul class="stepper">
                     <li class="active">Rules</li>
@@ -29,10 +26,9 @@
 
             <div class="quizz-card" id="rules">
                 <div class="question">Rules</div>
-                <p class="m-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, error non quis odit ipsum deleniti quaerat et omnis labore cupiditate, at, veritatis quia accusamus rerum ipsam enim sit harum velit!
+                <p class="m-5 fw-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, error non quis odit ipsum deleniti quaerat et omnis labore cupiditate, at, veritatis quia accusamus rerum ipsam enim sit harum velit!
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. A pariatur voluptate laudantium commodi reprehenderit quas voluptatum natus labore vel culpa, sed dolore. Quod molestiae aperiam optio ipsum, voluptas quae necessitatibus.
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi consectetur consequatur dolores maiores dicta culpa eos eum. Beatae alias odit quasi. Neque a dolore sint non dolorem labore eaque ipsum.
-
                 </p>
                 <div class="end">
                     <button type="button" class="btn btn-success" onclick="getQuestions()">Accept and Start<button>
@@ -41,7 +37,7 @@
 
             <div class="quizz-card" id="questions" style="display:none">
                 <h4 class="d-flex justify-content-between"><t></t>Question : <span id="questionNumber"></span>
-                <div id="countdown"></div></h4>
+                <div  class="text-warning" id="countdown"></div></h4>
                 <div class="question" id="questionn"></div>
                 <section class="answers">
                     <button  class="card" id="answer1" data-answer="A"></button>
@@ -59,17 +55,9 @@
                 <div id="correct" class="badge text-bg-success me-3"></div>
                 <div id="wrong" class="badge text-bg-danger mx-3"></div>
                 <div id="score" class="badge text-bg-warning mx-3 me-xs-3 "></div>
-
-                <div class="question" id="question"></div>
-                <section class="answers">
-                    <div  class="option" id="option1"></div>
-                    <div class="option" id="option2"></div>
-                    <div class="option" id="option3"></div>
-                    <div class="option" id="option4"></div>
-                </section>
-                
-
-                
+                <div class="justify">
+                    
+                </div>
             </div>
 
         </main>
