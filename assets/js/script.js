@@ -209,7 +209,7 @@ function countdown() {
 
 // show answers when questions are finished
 function showAnswers() {
-    for (let i = 0; i < questions.length; i++) {
+    for (let i = 0; i <= questions.length; i++) {
         if (user_answers[i] != questions[i].correct) {
             document.querySelector('.justify').innerHTML += `
                 <div class="question" id="question">Question : ${questions[i].question}</div>
@@ -219,8 +219,7 @@ function showAnswers() {
                     <div class="option" id="C${i}">${questions[i].C}</div>
                     <div class="option" id="D${i}">${questions[i].D}</div>
                     <div class=" justification" id="justif">Justification : ${questions[i].justification}</div>
-                </section>
-            `;
+                </section> `;
             if (user_answers[i] == 'A') {
                 document.querySelector(`#A${i}`).setAttribute('class', 'option false');
             } else if (user_answers[i] == 'B') {
@@ -239,7 +238,7 @@ function showAnswers() {
             } else if (questions[i].correct == 'D') {
                 document.querySelector(`#D${i}`).setAttribute('class', 'option true');
             }
-        } else {
+        } else if (correct == questions.length) {
             document.querySelector('.justify').innerHTML = '<h2 class="text-info centered"> Congrats, you have answered all the questions correctly </h2>';
         }
     }
