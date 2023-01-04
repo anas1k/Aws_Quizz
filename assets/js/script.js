@@ -1,5 +1,5 @@
 //create the quiz questions
-var questions = [
+/* var questions = [
     {
         question: 'Why is AWS more economical than traditional data centers for applications with varying compute workloads?',
         A: 'Amazon EC2 costs are billed on a monthly basis',
@@ -95,14 +95,24 @@ var questions = [
         correct: 'D',
         justification: 'The AWS Acceptable Use Policy provides information regarding prohibited actions on the AWS infrastructure. ',
     },
-];
+]; */
+
+var questions = new XMLHttpRequest();
+questions.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+        questions = JSON.parse(this.responseText);
+        fetchQuestion(questions);
+    }
+};
+questions.open('POST', '../controller/qu.php', false);
+questions.send();
 
 const nextButton = document.querySelector('.btn-primary');
 var buttons = document.querySelectorAll('.card');
 var correct = 0;
 var answer;
 var user_answers = [];
-var downloadTimer;
+var Timer;
 
 // randomize questions
 questions.sort(function () {
@@ -115,15 +125,16 @@ function countQuest() {
 }
 
 var index = 0;
+var ind = 0;
 
 // fetch questions and show them
-function fetchQuestion() {
+function fetchQuestion(questions) {
     if (index < questions.length) {
         document.getElementById('questionn').innerHTML = questions[index].question;
-        document.getElementById('answer1').innerText = questions[index].A;
-        document.getElementById('answer2').innerText = questions[index].B;
-        document.getElementById('answer3').innerText = questions[index].C;
-        document.getElementById('answer4').innerText = questions[index].D;
+        document.getElementById('answer1').innerText = questions[index].answers[ind];
+        document.getElementById('answer2').innerText = questions[index].answers[ind + 1];
+        document.getElementById('answer3').innerText = questions[index].answers[ind + 2];
+        document.getElementById('answer4').innerText = questions[index].answers[ind + 3];
     }
     chosenAnswer();
     countdown();
@@ -133,8 +144,8 @@ function fetchQuestion() {
         if (index < questions.length) {
             checkAnswer(index, answer);
             index++;
-            fetchQuestion();
-            clearInterval(downloadTimer);
+            fetchQuestion(questions);
+            clearInterval(Timer);
             // call countdown timer
             countdown();
             buttons.forEach(function (button) {
@@ -152,7 +163,7 @@ function getQuestions() {
     document.getElementById('questions').style.display = 'block';
     document.getElementById('rules').style.display = 'none';
     document.getElementById('QstSt').setAttribute('class', 'active');
-    fetchQuestion();
+    fetchQuestion(questions);
 }
 
 // to display the result of the quizz
@@ -186,20 +197,20 @@ function checkAnswer(index, answer) {
     user_answers.push(answer);
     if (questions[index].correct === answer) {
         console.log('correct');
-        correct++;
+        // correct++;
     }
 }
 
 // function for countdown timer
 function countdown() {
     var timeleft = 30;
-    clearInterval(downloadTimer);
-    downloadTimer = setInterval(function () {
+    clearInterval(Timer);
+    Timer = setInterval(function () {
         document.getElementById('countdown').innerHTML = timeleft + ' seconds remaining';
         timeleft -= 1;
         if (timeleft === -1) {
             document.getElementById('countdown').innerHTML = 'Next Question';
-            clearInterval(downloadTimer);
+            clearInterval(Timer);
 
             // getResults();
             nextButton.click();
@@ -209,16 +220,16 @@ function countdown() {
 
 // show answers when questions are finished
 function showAnswers() {
-    for (let i = 0; i < questions.length; i++) {
+    for (let i = 0; i <= questions.length; i++) {
         if (user_answers[i] != questions[i].correct) {
             document.querySelector('.justify').innerHTML += `
                 <div class="question" id="question">Question : ${questions[i].question}</div>
                 <section class="answers">
-                    <div  class="option" id="A${i}">${questions[i].A}</div>
-                    <div class="option" id="B${i}">${questions[i].B}</div>
-                    <div class="option" id="C${i}">${questions[i].C}</div>
-                    <div class="option" id="D${i}">${questions[i].D}</div>
-                    <div class=" justification" id="justif">Justification : ${questions[i].justification}</div>
+                    <div  class="option" id="A${i}">${questions[i].answers[ind]}</div>
+                    <div class="option" id="B${i}">${questions[i].answers[ind + 1]}</div>
+                    <div class="option" id="C${i}">${questions[i].answers[ind + 2]}</div>
+                    <div class="option" id="D${i}">${questions[i].answers[ind + 3]}</div>
+                    
                 </section>
             `;
             if (user_answers[i] == 'A') {
