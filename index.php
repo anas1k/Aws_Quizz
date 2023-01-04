@@ -50,15 +50,15 @@
             <h4 class="d-flex justify-content-between">Question : <span id="questionNumber" class="ms-1"></span>
                 <div class="text-warning" id="countdown"></div>
             </h4>
-            <div class="question" id="questionn"></div>
+            <div class="question" id="questionn" data-id=""></div>
             <section class="answers">
-                <button class="card" id="answer1" data-answer="A"></button>
-                <button class="card" id="answer2" data-answer="B"></button>
-                <button class="card" id="answer3" data-answer="C"></button>
-                <button class="card" id="answer4" data-answer="D"></button>
+                <button class="card choice" id="answer1" data-answer="A"></button>
+                <button class="card choice" id="answer2" data-answer="B"></button>
+                <button class="card choice" id="answer3" data-answer="C"></button>
+                <button class="card choice" id="answer4" data-answer="D"></button>
             </section>
 
-            <div class="end"><button type="button" class="btn btn-primary">Next Question</button></div>
+            <div class="end"><button type="button" class="btn btn-primary next">Next Question</button></div>
         </div>
 
         <div class="quizz-card" style="display:none" id="result">
