@@ -101,7 +101,6 @@ var questions = new XMLHttpRequest();
 questions.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
         questions = JSON.parse(this.responseText);
-        fetchQuestion(questions);
     }
 };
 questions.open('POST', '../controller/qu.php', false);
@@ -122,10 +121,10 @@ var correct = 0;
 var answer;
 var user_answers = [];
 var Timer;
-
+var randQuestions = questions;
 // randomize questions
-questions.sort(function () {
-    return 0.5 - Math.random();
+randQuestions.sort(function () {
+    return Math.random();
 });
 
 // question counter
@@ -138,18 +137,18 @@ var ind = 0;
 var id = 0;
 
 // fetch questions and show them
-function fetchQuestion(questions) {
+function fetchQuestion(randQuestions) {
     if (index < questions.length) {
-        document.getElementById('questionn').innerHTML = questions[index].question;
-        document.getElementById('answer1').innerText = questions[index].answers[ind];
-        document.getElementById('answer2').innerText = questions[index].answers[ind + 1];
-        document.getElementById('answer3').innerText = questions[index].answers[ind + 2];
-        document.getElementById('answer4').innerText = questions[index].answers[ind + 3];
-        document.getElementById('answer1').dataset.answer = questions[index].answers[ind];
-        document.getElementById('answer2').dataset.answer = questions[index].answers[ind + 1];
-        document.getElementById('answer3').dataset.answer = questions[index].answers[ind + 2];
-        document.getElementById('answer4').dataset.answer = questions[index].answers[ind + 3];
-        document.getElementById('questionn').dataset.id = questions[index].id;
+        document.getElementById('questionn').innerHTML = randQuestions[index].question;
+        document.getElementById('answer1').innerText = randQuestions[index].answers[ind];
+        document.getElementById('answer2').innerText = randQuestions[index].answers[ind + 1];
+        document.getElementById('answer3').innerText = randQuestions[index].answers[ind + 2];
+        document.getElementById('answer4').innerText = randQuestions[index].answers[ind + 3];
+        document.getElementById('answer1').dataset.answer = randQuestions[index].answers[ind];
+        document.getElementById('answer2').dataset.answer = randQuestions[index].answers[ind + 1];
+        document.getElementById('answer3').dataset.answer = randQuestions[index].answers[ind + 2];
+        document.getElementById('answer4').dataset.answer = randQuestions[index].answers[ind + 3];
+        document.getElementById('questionn').dataset.id = randQuestions[index].id;
     }
     chosenAnswer();
     countdown();
@@ -179,7 +178,7 @@ function getQuestions() {
     document.getElementById('questions').style.display = 'block';
     document.getElementById('rules').style.display = 'none';
     document.getElementById('QstSt').setAttribute('class', 'active');
-    fetchQuestion(questions);
+    fetchQuestion(randQuestions);
 }
 
 function saveAnswers(answer, id) {
@@ -250,28 +249,38 @@ function countdown() {
 
 // show answers when questions are finished
 function showAnswers() {
+    console.log(questions);
+    console.log('------------------');
+    console.log(user_answers);
+    console.log('----------------------');
+    console.log(answers);
+
     for (let i = 0; i < questions.length; i++) {
-        // console.log('li khtar user : ' + user_answers[i]);
         if (user_answers[i] != answers[i].answer) {
             document.querySelector('.justify').innerHTML += `
-                <div class="question" id="question">Question : ${questions[i].question}</div>
+                <div class="question" id="question">Question : ${questions[questions[i].id - 1].question}</div>
                 <section class="answers">
-                    <div  class="option" id="A${i}">${questions[i].answers[ind]}</div>
-                    <div class="option" id="B${i}">${questions[i].answers[ind + 1]}</div>
-                    <div class="option" id="C${i}">${questions[i].answers[ind + 2]}</div>
-                    <div class="option" id="D${i}">${questions[i].answers[ind + 3]}</div>
+                    <div  class="option" id="A${i}">${questions[questions[i].id - 1].answers[0]}</div>
+                    <div class="option" id="B${i}">${questions[questions[i].id - 1].answers[1]}</div>
+                    <div class="option" id="C${i}">${questions[questions[i].id - 1].answers[2]}</div>
+                    <div class="option" id="D${i}">${questions[questions[i].id - 1].answers[3]}</div>
                     <div class=" justification" id="justif">Justification : ${answers[i].justify}</div>
                 </section>
-            `;
-            // console.log('jawab s7i7 : ' + answers[i].answer);
+                `;
+        } else if (correct == questions.length) {
+            document.querySelector('.justify').innerHTML = '<h2 class="text-info centered"> Congrats, you have answered all the questions correctly </h2>';
+        }
+    }
+    for (let i = 0; i < questions.length; i++) {
+        if (user_answers[i] != answers[i].answer) {
             for (let j = 0; j < questions.length; j++) {
-                if (user_answers[j] == document.querySelector(`#A${i}`).innerText) {
+                if (user_answers[i] == document.querySelector(`#A${i}`).innerText) {
                     document.querySelector(`#A${i}`).setAttribute('class', 'option false');
-                } else if (user_answers[j] == document.querySelector(`#B${i}`).innerText) {
+                } else if (user_answers[i] == document.querySelector(`#B${i}`).innerText) {
                     document.querySelector(`#B${i}`).setAttribute('class', 'option false');
-                } else if (user_answers[j] == document.querySelector(`#C${i}`).innerText) {
+                } else if (user_answers[i] == document.querySelector(`#C${i}`).innerText) {
                     document.querySelector(`#C${i}`).setAttribute('class', 'option false');
-                } else if (user_answers[j] == document.querySelector(`#D${i}`).innerText) {
+                } else if (user_answers[i] == document.querySelector(`#D${i}`).innerText) {
                     document.querySelector(`#D${i}`).setAttribute('class', 'option false');
                 }
 
@@ -285,8 +294,6 @@ function showAnswers() {
                     document.querySelector(`#D${i}`).setAttribute('class', 'option true');
                 }
             }
-        } else if (correct == questions.length) {
-            document.querySelector('.justify').innerHTML = '<h2 class="text-info centered"> Congrats, you have answered all the questions correctly </h2>';
         }
     }
 }
