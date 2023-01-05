@@ -32,7 +32,7 @@ randQuestions.sort(function () {
 
 // question counter
 function countQuest() {
-    document.getElementById('questionNumber').innerHTML = 'Question ' + (index + 1) + ' / ' + questions.length;
+    document.getElementById('questionNumber').innerHTML = index + 1 + ' / ' + questions.length;
 }
 
 var index = 0;
@@ -157,12 +157,12 @@ function showAnswers() {
     for (let i = 0; i < questions.length; i++) {
         if (user_answers[i] != answers[i].answer) {
             document.querySelector('.justify').innerHTML += `
-                <div class="question" id="question">Question : ${questions[questions[i].id - 1].question}</div>
+                <div class="question" id="question">Question : ${questionS[questionS[i].id - 1].question}</div>
                 <section class="answers">
-                    <div  class="option" id="A${i}">${questions[questions[i].id - 1].answers[ind]}</div>
-                    <div class="option" id="B${i}">${questions[questions[i].id - 1].answers[ind + 1]}</div>
-                    <div class="option" id="C${i}">${questions[questions[i].id - 1].answers[ind + 2]}</div>
-                    <div class="option" id="D${i}">${questions[questions[i].id - 1].answers[ind + 3]}</div>
+                    <div  class="option" id="A${i}">${questionS[questionS[i].id - 1].answers[ind]}</div>
+                    <div class="option" id="B${i}">${questionS[questionS[i].id - 1].answers[ind + 1]}</div>
+                    <div class="option" id="C${i}">${questionS[questionS[i].id - 1].answers[ind + 2]}</div>
+                    <div class="option" id="D${i}">${questionS[questionS[i].id - 1].answers[ind + 3]}</div>
                     <div class=" justification" id="justif">Justification : ${answers[i].justify}</div>
                 </section>
                 `;

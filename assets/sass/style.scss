@@ -204,6 +204,7 @@ nav{
 
 .justification{
     @include flexCenter;
+    width: 90%;
     color: rgb(225, 255, 0);
     font-weight: 700;
 }

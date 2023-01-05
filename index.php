@@ -1,12 +1,3 @@
-<?php
-
-// $encoded_data = json_encode($results, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-// file_put_contents('assets/json/data.json', $encoded_data);
-// print_r($encoded_data);
-// die;
-
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,7 +28,7 @@
 
         <div class="quizz-card" id="rules">
             <div class="question">Rules</div>
-            <p class="m-5 fw-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, error non quis odit ipsum deleniti quaerat et omnis labore cupiditate, at, veritatis quia accusamus rerum ipsam enim sit harum velit!
+            <p class="m-5 text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, error non quis odit ipsum deleniti quaerat et omnis labore cupiditate, at, veritatis quia accusamus rerum ipsam enim sit harum velit!
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. A pariatur voluptate laudantium commodi reprehenderit quas voluptatum natus labore vel culpa, sed dolore. Quod molestiae aperiam optio ipsum, voluptas quae necessitatibus.
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi consectetur consequatur dolores maiores dicta culpa eos eum. Beatae alias odit quasi. Neque a dolore sint non dolorem labore eaque ipsum.
             </p>
