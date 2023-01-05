@@ -1,28 +1,40 @@
-var questions = new XMLHttpRequest();
-questions.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-        questions = JSON.parse(this.responseText);
-    }
-};
-questions.open('POST', '../controller/qu.php', false);
-questions.send();
+// var questions = new XMLHttpRequest();
+// questions.onreadystatechange = function () {
+//     if (this.readyState == 4 && this.status == 200) {
+//         questions = JSON.parse(this.responseText);
+//     }
+// };
+// questions.open('POST', '../controller/question.php', false);
+// questions.send();
 
-var answers = new XMLHttpRequest();
-answers.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-        answers = JSON.parse(this.responseText);
-    }
-};
+// var answers = new XMLHttpRequest();
+// answers.onreadystatechange = function () {
+//     if (this.readyState == 4 && this.status == 200) {
+//         answers = JSON.parse(this.responseText);
+//     }
+// };
 
-answers.open('POST', '../controller/an.php', false);
-answers.send();
+// answers.open('POST', '../controller/answer.php', false);
+// answers.send();
 
+function getData(url) {
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            request = JSON.parse(this.responseText);
+        }
+    };
+    request.open('POST', url, false);
+    request.send();
+    return request;
+}
 const nextButton = document.querySelector('.next');
 const buttons = document.querySelectorAll('.choice');
 var correct = 0;
 var answer;
 var user_answers = [];
 var Timer;
+var questions = getData('../controller/question.php');
 var randQuestions = questions;
 
 // randomize questions
@@ -86,26 +98,15 @@ function saveAnswers(answer, id) {
     user_answers[id - 1] = answer;
 }
 
-function check(count) {
-    if (count == questions.length) {
-        for (let i = 0; i < questions.length; i++) {
-            if (user_answers[i] == answers[i].answer) {
-                correct++;
-            }
-        }
-        getResults(correct);
-    }
-}
-
 // to display the result of the quizz
-function getResults(correct) {
+function getResults(correct, answers) {
     document.getElementById('questions').style.display = 'none';
     document.getElementById('result').style.display = 'block';
     document.getElementById('RsltSt').setAttribute('class', 'active');
     document.getElementById('correct').innerText = correct + ' correct out of /' + questions.length;
     document.getElementById('wrong').innerText = questions.length - correct + ' Wrong answers';
     document.getElementById('score').innerText = (correct / questions.length) * 100 + '%  Success Rate';
-    showAnswers();
+    showAnswers(answers);
 }
 
 // to make the choosen answer green
@@ -136,14 +137,25 @@ function countdown() {
         if (timeleft === -1) {
             document.getElementById('countdown').innerHTML = 'Next Question';
             clearInterval(Timer);
-
             nextButton.click();
         }
     }, 1000);
 }
 
+function check(count) {
+    if (count == questions.length) {
+        var answers = getData('../controller/answer.php');
+        for (let i = 0; i < questions.length; i++) {
+            if (user_answers[i] == answers[i].answer) {
+                correct++;
+            }
+        }
+        getResults(correct, answers);
+    }
+}
+
 // show answers when questions are finished
-function showAnswers() {
+function showAnswers(answers) {
     let questionS = questions.sort(function (a, b) {
         return a.id - b.id;
     });
